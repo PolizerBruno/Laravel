@@ -141,9 +141,13 @@ class MinhasTarefasController extends Controller
     public function update(Request $request, $id)
     {
         Tarefas::find($id)->update(['name'=>$request->tarefaName,'text'=>$request->tarefaDescreve,'tipo_id'=>$request->tarefaTipo,'prioridade_id'=>$request->tarefaPrioridade]);
+        subTarefas::where('tarefa_id',$id)->delete();
         foreach ($request->subTarefas as $subtarefa) {
-            var_dump($subtarefa);
+          subTarefas::create(['name'=>$subtarefa,'tarefa_id'=>$id,'status_id'=>2]);
         }
+        return redirect()->action(
+            'MinhasTarefasController@index'
+        );
     }
 
     /**
