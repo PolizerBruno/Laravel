@@ -13,7 +13,7 @@ class estatisticaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         $users = User::all('id','name');
         $subtarefas = Subtarefas::with('user:id,name')->get();
