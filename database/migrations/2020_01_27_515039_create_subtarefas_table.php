@@ -18,6 +18,7 @@ class CreateSubtarefasTable extends Migration
             $table->string('name');
             $table->integer('tarefa_id')->unsigned();
             $table->integer('status_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
         });
 
     }

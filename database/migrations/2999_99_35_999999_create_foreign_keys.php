@@ -20,6 +20,7 @@ class CreateForeignKeys extends Migration
         Schema::table('subtarefas',function ($table){
             $table->foreign('status_id')->references('id')->on('estados')->onDelete('cascade');
             $table->foreign('tarefa_id')->references('id')->on('tarefas')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
         Schema::table('tarefas', function ($table) {
             $table->foreign('tipo_id')->references('id')->on('tipos')->onDelete('cascade');

@@ -32,11 +32,16 @@
                                                  {{$subtarefa->name}}
                                                 <form action="/home/subtarefas/{{$subtarefa->id}}/update" method="POST" name = "subTarefaForm">
                                                     @csrf
-                                                    <select name="estado" id ="estado" onchange="this.form.submit()">
-                                                        <option value = "{{$subtarefa->estado->id}}">{{$subtarefa->estado->name}}</option>
-                                                        @foreach($estados as $estado)
-                                                            <option value="{{$estado->id}}">{{$estado->name}}</option>
-                                                        @endforeach
+                                                    <select class="form-control" name="estado" id ="estado" onchange="this.form.submit()">
+                                                        @if($subtarefa->estado->id == 4)
+                                                            <option value = "{{$subtarefa->estado->id}}">{{$subtarefa->estado->name}}</option>
+                                                        @else
+                                                            <option value = "{{$subtarefa->estado->id}}">{{$subtarefa->estado->name}}</option>
+                                                            @foreach($estados as $estado)
+                                                                <option value="{{$estado->id}}">{{$estado->name}}</option>
+                                                            @endforeach
+
+                                                        @endif
                                                     </select>
                                                 </form>
                                             </ul>
@@ -44,8 +49,8 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width:{{$porcentagem[$tarefa->id]}}" aria-valuenow="{{$porcentagem[$tarefa->id]}}" aria-valuemin="0" aria-valuemax="100">{{$porcentagem[$tarefa->id]}}%</div>
+                                    <div class="">
+                                        <div class="progress-bar progress-bar-striped " role="progressbar" style="width:{{$porcentagem[$tarefa->id]}}" aria-valuenow="{{$porcentagem[$tarefa->id]}}" aria-valuemin="0" aria-valuemax="100">{{$porcentagem[$tarefa->id]}}%</div>
                                     </div>
                                 </td>
                                 <td>
@@ -92,8 +97,3 @@
 </div>
 @endsection
 
-<script>
-    function formRequest(id){
-
-    }
-</script>

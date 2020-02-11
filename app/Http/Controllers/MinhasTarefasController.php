@@ -71,7 +71,7 @@ class MinhasTarefasController extends Controller
         ]);
         $tarefa = Tarefas::create(['name'=>trim($request->tarefaName),'text'=>trim($request->tarefaDescreve),'tipo_id'=>$request->tarefaTipo,'prioridade_id'=>$request->tarefaPrioridade,'equipe_id'=>$request->tarefaEquipe]);
         foreach($request->subTarefas as $etapa){
-            subTarefas::create(['name' =>$etapa,'tarefa_id'=>$tarefa->id,'status_id'=>2]);
+            subTarefas::create(['name' =>$etapa,'tarefa_id'=>$tarefa->id,'status_id'=>2,'user_id'=>null]);
         }
         return redirect()->action(
             'MinhasTarefasController@index'
@@ -143,7 +143,7 @@ class MinhasTarefasController extends Controller
         Tarefas::find($id)->update(['name'=>$request->tarefaName,'text'=>$request->tarefaDescreve,'tipo_id'=>$request->tarefaTipo,'prioridade_id'=>$request->tarefaPrioridade]);
         subTarefas::where('tarefa_id',$id)->delete();
         foreach ($request->subTarefas as $subtarefa) {
-          subTarefas::create(['name'=>$subtarefa,'tarefa_id'=>$id,'status_id'=>2]);
+          subTarefas::create(['name'=>$subtarefa,'tarefa_id'=>$id,'status_id'=>2,'user_id'=>null]);
         }
         return redirect()->action(
             'MinhasTarefasController@index'

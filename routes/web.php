@@ -36,6 +36,7 @@ Route::get('/home/funcionarios','FuncionariosController@index')->name('funcionar
 Route::get('/home/funcionarios/{id}/edit','FuncionariosController@edit');
 Route::post('/home/funcionarios/{id}/edit','FuncionariosController@update');
 Route::post('/home/subtarefas/{id}/update','subTarefasController@update');
+Route::get('/home/estatisticas/{id}','estatisticaController@index');
 
 
 

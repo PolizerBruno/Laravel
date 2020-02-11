@@ -3,20 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Subtarefas;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
-class subTarefasController extends Controller
+class estatisticaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $users = User::all('id','name');
+        $subtarefas = Subtarefas::with('user:id,name')->get();
+        $dataPoint = array();
+        foreach($users as $user){
+            $contador = 0;
+            foreach($subtarefas as $subtarefa){
+                if($subtarefa->user_id == $user->id){
+                    $contador++;
+                }
+            }
+            $dataPoint[] = array('y'=>$contador,'label'=>$user->name);
+        }
+        return view('estatistica.index',['dataPoints'=>$dataPoint]);
     }
 
     /**
@@ -71,8 +82,7 @@ class subTarefasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Subtarefas::find($id)->update(['status_id' =>$request->estado,'user_id'=>Auth()->user()->id]);
-        return Redirect::back();
+        //
     }
 
     /**
