@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Editar Tarefa</div>
+    <div class="justify-content-center">
+        <div class="">
+            <div class="card p-2">
+                <div class="card-header border d-flex justify-content-center">Editar Tarefa</div>
 
                 <div class="card-body">
                     @if (session('status'))

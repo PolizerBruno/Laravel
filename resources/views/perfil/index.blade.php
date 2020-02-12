@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="">
     <div>
-        <div class="col-xl-10">
-            <div class="card">
-                <div class="card-header">Perfil de {{$user->name}}</div>
+        <div class="">
+            <div class="card p-2">
+                <div class="card-header border d-flex justify-content-center">Perfil de {{$user->name}}</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

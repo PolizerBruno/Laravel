@@ -19,7 +19,7 @@ class Subtarefas extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class,'tarefa_id');
+        return $this->belongsTo(User::class,'user_id');
     }
 
 }

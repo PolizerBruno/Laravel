@@ -24,7 +24,7 @@ class MinhasTarefasController extends Controller
         }else{
             $tarefas = Tarefas::where('equipe_id',Auth::user()->equipe_id)->with('tipos','prioridades','equipes')->orderBy('prioridade_id','desc')->get();
         }
-        $subtarefas = subTarefas::with('tarefas','estado')->get();
+        $subtarefas = subTarefas::with('tarefas','estado','user:id,name')->get();
         $array[] = "";
         foreach($tarefas as $tarefa){
             $dividendo = 0;

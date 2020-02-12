@@ -3,9 +3,9 @@
 @section('content')
 <div>
     <div class="justify-content-center">
-        <div class="col-xl-10">
-            <div class="card">
-                <div class="card-header">Adicionar Tarefa</div>
+        <div class="">
+            <div class="card p-2">
+                <div class="card-header border d-flex justify-content-center">Funcionarios</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
