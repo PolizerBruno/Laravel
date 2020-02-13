@@ -15,17 +15,17 @@ class estatisticaController extends Controller
      */
     public function index()
     {
-        $users = User::all('id', 'name');
+        $users = User::all('id','name');
         $subtarefas = Subtarefas::with('user:id,name')->get();
         $dataPoint = array();
         foreach ($users as $user) {
             $contador = 0;
             foreach ($subtarefas as $subtarefa) {
-                if ($subtarefa->user_id == $user->id) {
+                if ($subtarefa->user_id == $user->id && $subtarefa->status_id == 4) {
                     $contador++;
                 }
             }
-            $dataPoint[] = array('y' => $contador, 'label' => $user->name);
+             $dataPoint[] = array('y' => $contador, 'label' => $user->name);
         }
         return view('estatistica.index', ['dataPoints' => $dataPoint]);
     }

@@ -127,8 +127,9 @@ class MinhasTarefasController extends Controller
         $tarefas = Tarefas::where('id',$id)->with('tipos','prioridades')->first();
         $subtarefas = subTarefas::where('tarefa_id',$id)->get();
         $tipos = Tipo::all();
+        $estado = Estado::all();
         $prioridades = Prioridades::all();
-        return view('tarefas.edit',['tarefas' =>$tarefas,'tipos'=>$tipos,'prioridades'=>$prioridades,'subtarefas'=>$subtarefas]);
+        return view('tarefas.edit',['tarefas' =>$tarefas,'tipos'=>$tipos,'prioridades'=>$prioridades,'subtarefas'=>$subtarefas,'estados'=>$estado]);
     }
 
     /**
@@ -142,12 +143,15 @@ class MinhasTarefasController extends Controller
     {
         Tarefas::find($id)->update(['name'=>$request->tarefaName,'text'=>$request->tarefaDescreve,'tipo_id'=>$request->tarefaTipo,'prioridade_id'=>$request->tarefaPrioridade]);
         subTarefas::where('tarefa_id',$id)->delete();
+        $i = 0;
         foreach ($request->subTarefas as $subtarefa) {
-          subTarefas::create(['name'=>$subtarefa,'tarefa_id'=>$id,'status_id'=>2,'user_id'=>null]);
+          subTarefas::create(['name'=>$subtarefa,'tarefa_id'=>$id,'status_id'=>$request->estado[$i],'user_id'=>auth()->user()->id]);
+          $i++;
         }
         return redirect()->action(
             'MinhasTarefasController@index'
         );
+
     }
 
     /**

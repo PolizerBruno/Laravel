@@ -43,14 +43,22 @@
                           <textarea class="form-control" id="tarefaDescreve"  name="tarefaDescreve" rows="3">{{$tarefas->text}}</textarea>
                         </div>
                         <div class="card">
+                        <div class="">   
                             <div class="card-body" id="subTarefasAppend">
                                 @foreach($subtarefas as $subtarefa)
-                                <div class="d-flex justify-content-between mb-2" id="subTarefas" name = "">
-                                    <input type="subTarefas"  value="{{$subtarefa->name}}" name="subTarefas[]" class="form-control mr-2" id="subTarefas"  placeholder="Etapas">
-                                    <button href="#" type="button" onclick="remove(this.parentNode.id)"><i class="material-icons">remove</i></button>
+                                <div class="d-flex justify-content-start mb-2" id="subTarefas" name = "">
+                                        <input type="subTarefas"  value="{{$subtarefa->name}}" name="subTarefas[]" class="form-control mr-2" id="subTarefas"  placeholder="Etapas">
+                                        <select class="form-control" name = "estado[]">
+                                        <option value="{{$subtarefa->status_id}}">{{$subtarefa->estado->name}}</option>
+                                            @foreach ($estados as $estado)
+                                                <option value ="{{$estado->id}}">{{$estado->name}}</option>
+                                            @endforeach
+                                        </select>
+                               <button href="#" type="button" onclick="remove(this.parentNode.id)"><i class="material-icons">remove</i></button>
                                 </div>
                                 @endforeach
                             </div>
+                        </div>
                             <div class="d d-flex justify-content-center">
                                 <label for="addSubtarefa">
                                     Adicionar nova Etapa
