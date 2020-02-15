@@ -11,6 +11,7 @@
                     <th scope="col">Descrição</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Equipe</th>
+                    <th scope="col">Prazo</th>
                     <th scope="col">Etapas</th>
                     <th scope="col">Progresso</th>
                     <th scope="col"></th>
@@ -26,6 +27,12 @@
                     <td>{{$tarefa->text }}</td>
                     <td>{{$tarefa->tipos->tipo }}</td>
                     <td>{{$tarefa->equipes->name}}</td>
+                    <td>
+                        <?php
+                           echo (round(strtotime($tarefa->deadLine) -  strtotime(date('Y-m-d')))/(60*60*24));
+                        ?>
+                        Dias
+                    </td>
                     <td>
                         @foreach($subtarefas as $subtarefa)
                         @if($subtarefa->tarefa_id == $tarefa->id)
@@ -50,7 +57,7 @@
                             </li>
                         </ul>
                         @endif
-                        @endforeach
+                    @endforeach
                     </td>
                     <td>
                         <div class="progress">

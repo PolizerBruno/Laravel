@@ -68,8 +68,9 @@ class MinhasTarefasController extends Controller
             'tarefaTipo' => 'required',
             'tarefaEquipe'=>'required',
             'subTarefas' =>'required',
+            'deadLine' => 'required|date_format:Y-m-d|after:today'
         ]);
-        $tarefa = Tarefas::create(['name'=>trim($request->tarefaName),'text'=>trim($request->tarefaDescreve),'tipo_id'=>$request->tarefaTipo,'prioridade_id'=>$request->tarefaPrioridade,'equipe_id'=>$request->tarefaEquipe]);
+        $tarefa = Tarefas::create(['name'=>trim($request->tarefaName),'text'=>trim($request->tarefaDescreve),'tipo_id'=>$request->tarefaTipo,'prioridade_id'=>$request->tarefaPrioridade,'equipe_id'=>$request->tarefaEquipe,'deadLine'=>$request->deadLine]);
         foreach($request->subTarefas as $etapa){
             subTarefas::create(['name' =>$etapa,'tarefa_id'=>$tarefa->id,'status_id'=>2,'user_id'=>null]);
         }

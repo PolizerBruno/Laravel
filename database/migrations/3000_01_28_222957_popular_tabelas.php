@@ -23,7 +23,6 @@ class PopularTabelas extends Migration
         DB::table('funcoes')->insert(array('name'=>'Digitalizador'));
         DB::table('funcoes')->insert(array('name'=>'Preparador'));
         DB::table('funcoes')->insert(array('name'=>'Auxiliar serviços gerais'));
-        DB::table('funcoes')->insert(array('name'=>'Presidente'));
         DB::table('prioridades')->insert(array('prioridade'=>'Baixa'));
         DB::table('prioridades')->insert(array('prioridade'=>'Média'));
         DB::table('prioridades')->insert(array('prioridade'=>'Alta'));

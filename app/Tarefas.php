@@ -11,7 +11,7 @@ class Tarefas extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['name','text','tipo_id','prioridade_id','equipe_id','tarefa_id'];
+    protected $fillable = ['name','text','tipo_id','prioridade_id','equipe_id','tarefa_id','deadLine'];
 
     public function tipos()
     {

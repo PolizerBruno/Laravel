@@ -49,12 +49,13 @@
                             <select class="form-control is-invalid" id="tarefaEquipe" name="tarefaEquipe">
                                 <option selected value="">Selecione</option>
                                 @foreach ($equipes as $equipe)
-                                <option value="{{$equipe->id}}">{{$equipe->tipo}}</option>
+                                <option value="{{$equipe->id}}">{{$equipe->name}}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
                                 {{ $errors->first('tarefaEquipe') }}
-                            </div @else <select class="form-control" id="tarefaEquipe" name="tarefaEquipe">
+                            </div>
+                            @else <select class="form-control" id="tarefaEquipe" name="tarefaEquipe">
                             <option selected value="">Selecione</option>
                             @foreach ($equipes as $equipe)
                             <option value="{{$equipe->id}}">{{$equipe->name}}</option>
@@ -81,6 +82,17 @@
                                 <option value="{{$prioridade->id}}">{{$prioridade->prioridade}}</option>
                                 @endforeach
                             </select>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="deadLine">Prazo</label>
+                            @if($errors->has('deadLine'))
+                            <input type="date" name="deadLine" class="form-control is-invalid" id="deadLine"/>
+                            <div class="invalid-feedback">
+                                {{ $errors->first('deadLine') }}
+                            </div>
+                            @else
+                            <input type="date" name="deadLine" class="form-control" id="deadLine">
                             @endif
                         </div>
                         <div class="form-group">

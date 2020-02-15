@@ -21,6 +21,7 @@ class CreateTarefasTable extends Migration
             $table->integer('tipo_id')->unsigned();
             $table->integer('prioridade_id')->unsigned();
             $table->integer('equipe_id')->unsigned();
+            $table->date('deadLine');
             $table->timestamps();
             $table->softDeletes();
 

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Equipe;
 use App\Prioridades;
-use App\Tipo;
 use Illuminate\Http\Request;
 
-class TiposController extends Controller
+class PrioridadeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,7 @@ class TiposController extends Controller
      */
     public function index()
     {
-        $tipos = Tipo::all();
-        $equipes = Equipe::all();
-        $prioridades = Prioridades::all();
-        return view('tipos.index',['tipos' =>$tipos,'equipes'=>$equipes,'prioridades'=>$prioridades]);
+        //
     }
 
     /**
@@ -40,9 +35,9 @@ class TiposController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate(['tipoName'=>'required|unique:tipos,tipo']);
-       Tipo::create(['tipo' =>$request->tipoName])->save();
-       return redirect(route('tipos.index'));
+        $request->validate(['prioridadeName'=>'required|unique:prioridades,prioridade']);
+        Prioridades::create(['prioridade' =>$request->prioridadeName])->save();
+        return redirect(route('tipos.index'));
     }
 
     /**
@@ -87,7 +82,7 @@ class TiposController extends Controller
      */
     public function destroy($id)
     {
-        if(Tipo::find($id)->delete()){
+        if(Prioridades::find($id)->delete()){
             return redirect(route('tipos.index'));
         }
         return redirect(route('tipos.index'));
